@@ -1,0 +1,392 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum PlatformRole {
+  USER
+  OWNER
+  ADMIN
+}
+
+enum BusinessAccountRole {
+  OWNER
+  MANAGER
+  STAFF
+}
+
+enum BusinessPlanTier {
+  BASIC
+  PRO
+  PRO_PLUS
+  ENTERPRISE
+}
+
+enum MembershipStatus {
+  ACTIVE
+  PAUSED
+  CANCELED
+}
+
+enum RewardType {
+  VISIT
+  POINTS
+  HYBRID
+}
+
+enum RedemptionStatus {
+  CLAIMED
+  USED
+  EXPIRED
+  CANCELED
+}
+
+enum NewsletterStatus {
+  DRAFT
+  SCHEDULED
+  SENT
+  FAILED
+}
+
+enum NotificationType {
+  PROGRAM_UPDATE
+  REWARD_UNLOCKED
+  NEWSLETTER
+  MONTHLY_SUMMARY
+}
+
+model User {
+  id                String            @id @default(cuid())
+  name              String?
+  email             String?           @unique
+  emailVerified     DateTime?
+  image             String?
+  role              PlatformRole      @default(USER)
+  createdAt         DateTime          @default(now())
+  updatedAt         DateTime          @updatedAt
+  accounts          Account[]
+  sessions          Session[]
+  businessAccounts  BusinessAccount[]
+  memberships       Membership[]
+  purchasesCaptured Purchase[]        @relation("CapturedBy")
+  scanEvents        QRScanEvent[]     @relation("ScannedBy")
+  notifications     Notification[]
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@index([userId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+model Business {
+  id            String               @id @default(cuid())
+  name          String
+  slug          String               @unique
+  description   String?
+  logoUrl       String?
+  primaryColor  String?              @default("#ba9eff")
+  planTier      BusinessPlanTier     @default(BASIC)
+  seatLimit     Int                  @default(1)
+  createdAt     DateTime             @default(now())
+  updatedAt     DateTime             @updatedAt
+  accounts      BusinessAccount[]
+  memberships   Membership[]
+  loyaltyProgram LoyaltyProgram?
+  rewards       Reward[]
+  purchases     Purchase[]
+  redemptions   Redemption[]
+  specialMenus  SpecialMenu[]
+  newsletters   Newsletter[]
+  notifications Notification[]
+  subscriptions BusinessSubscription[]
+  monthlyMetrics MonthlyMetric[]
+  qrScanEvents  QRScanEvent[]
+}
+
+model BusinessAccount {
+  id         String              @id @default(cuid())
+  userId     String
+  businessId String
+  role       BusinessAccountRole @default(OWNER)
+  isActive   Boolean             @default(true)
+  createdAt  DateTime            @default(now())
+  updatedAt  DateTime            @updatedAt
+
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  business Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, businessId])
+  @@index([businessId, role])
+}
+
+model BusinessSubscription {
+  id               String           @id @default(cuid())
+  businessId       String
+  planTier         BusinessPlanTier
+  seatLimit        Int
+  status           String           @default("active")
+  billingProvider  String?
+  billingReference String?
+  startsAt         DateTime         @default(now())
+  endsAt           DateTime?
+  createdAt        DateTime         @default(now())
+  updatedAt        DateTime         @updatedAt
+
+  business Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+
+  @@index([businessId, status])
+}
+
+model LoyaltyProgram {
+  id                String     @id @default(cuid())
+  businessId        String     @unique
+  title             String     @default("Loyalty Blueprint")
+  visitsPerReward   Int        @default(10)
+  pointsPerDollar   Int        @default(10)
+  rewardLabel       String     @default("Reward")
+  rewardDescription String?
+  rewardType        RewardType @default(HYBRID)
+  pointsExpireInDays Int?      @default(365)
+  isActive          Boolean    @default(true)
+  createdAt         DateTime   @default(now())
+  updatedAt         DateTime   @updatedAt
+
+  business Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+}
+
+model Membership {
+  id          String           @id @default(cuid())
+  userId      String
+  businessId  String
+  memberCode  String           @unique
+  status      MembershipStatus @default(ACTIVE)
+  visitsCount Int              @default(0)
+  pointsBalance Int            @default(0)
+  joinedAt    DateTime         @default(now())
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+
+  user        User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  business    Business      @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  purchases   Purchase[]
+  redemptions Redemption[]
+  qrScanEvents QRScanEvent[]
+  pointsLedger PointsLedger[]
+
+  @@unique([userId, businessId])
+  @@index([businessId, status])
+}
+
+model Purchase {
+  id                String        @id @default(cuid())
+  membershipId      String
+  businessId        String
+  capturedById      String?
+  amountCents       Int
+  pointsEarned      Int           @default(0)
+  visitsEarned      Int           @default(0)
+  purchaseNote      String?
+  externalReference String?
+  capturedAt        DateTime      @default(now())
+  createdAt         DateTime      @default(now())
+
+  membership        Membership    @relation(fields: [membershipId], references: [id], onDelete: Cascade)
+  business          Business      @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  capturedBy        User?         @relation("CapturedBy", fields: [capturedById], references: [id], onDelete: SetNull)
+  qrScanEvent       QRScanEvent?
+  pointsLedgerEntries PointsLedger[]
+
+  @@index([businessId, capturedAt])
+  @@index([membershipId, capturedAt])
+}
+
+model PointsLedger {
+  id           String    @id @default(cuid())
+  membershipId String
+  purchaseId   String?
+  pointsDelta  Int
+  reason       String
+  expiresAt    DateTime?
+  createdAt    DateTime  @default(now())
+
+  membership Membership @relation(fields: [membershipId], references: [id], onDelete: Cascade)
+  purchase   Purchase?  @relation(fields: [purchaseId], references: [id], onDelete: SetNull)
+
+  @@index([membershipId, createdAt])
+}
+
+model Reward {
+  id                  String      @id @default(cuid())
+  businessId          String
+  title               String
+  description         String?
+  requiredVisits      Int?
+  requiredPoints      Int?
+  isSpecialMenuAccess Boolean     @default(false)
+  isActive            Boolean     @default(true)
+  createdAt           DateTime    @default(now())
+  updatedAt           DateTime    @updatedAt
+
+  business    Business     @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  redemptions Redemption[]
+
+  @@index([businessId, isActive])
+}
+
+model Redemption {
+  id           String           @id @default(cuid())
+  rewardId     String
+  membershipId String
+  businessId   String
+  status       RedemptionStatus @default(CLAIMED)
+  redeemedAt   DateTime         @default(now())
+  usedAt       DateTime?
+  createdAt    DateTime         @default(now())
+
+  reward     Reward     @relation(fields: [rewardId], references: [id], onDelete: Cascade)
+  membership Membership @relation(fields: [membershipId], references: [id], onDelete: Cascade)
+  business   Business   @relation(fields: [businessId], references: [id], onDelete: Cascade)
+
+  @@index([businessId, redeemedAt])
+  @@index([membershipId, status])
+}
+
+model SpecialMenu {
+  id          String            @id @default(cuid())
+  businessId  String
+  title       String
+  description String?
+  isActive    Boolean           @default(true)
+  startsAt    DateTime?
+  endsAt      DateTime?
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
+
+  business Business          @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  items    SpecialMenuItem[]
+
+  @@index([businessId, isActive])
+}
+
+model SpecialMenuItem {
+  id               String    @id @default(cuid())
+  menuId           String
+  title            String
+  description      String?
+  publicPriceCents Int?
+  networkPriceCents Int
+  imageUrl         String?
+  isActive         Boolean   @default(true)
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+
+  menu SpecialMenu @relation(fields: [menuId], references: [id], onDelete: Cascade)
+
+  @@index([menuId, isActive])
+}
+
+model Newsletter {
+  id          String           @id @default(cuid())
+  businessId  String
+  subject     String
+  content     String
+  status      NewsletterStatus @default(DRAFT)
+  scheduledAt DateTime?
+  sentAt      DateTime?
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+
+  business Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+
+  @@index([businessId, status])
+}
+
+model Notification {
+  id         String           @id @default(cuid())
+  userId     String
+  businessId String?
+  type       NotificationType
+  title      String
+  body       String
+  readAt     DateTime?
+  createdAt  DateTime         @default(now())
+
+  user     User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  business Business? @relation(fields: [businessId], references: [id], onDelete: SetNull)
+
+  @@index([userId, createdAt])
+}
+
+model MonthlyMetric {
+  id                  String   @id @default(cuid())
+  businessId          String
+  month               DateTime
+  purchasesCount      Int      @default(0)
+  purchasesAmountCents Int     @default(0)
+  rewardsClaimed      Int      @default(0)
+  activeMembers       Int      @default(0)
+  retentionRate       Float    @default(0)
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+
+  business Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+
+  @@unique([businessId, month])
+}
+
+model QRScanEvent {
+  id           String   @id @default(cuid())
+  businessId   String
+  membershipId String
+  scannedById  String?
+  purchaseId   String?  @unique
+  rawCode      String
+  status       String   @default("captured")
+  createdAt    DateTime @default(now())
+
+  business   Business   @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  membership Membership @relation(fields: [membershipId], references: [id], onDelete: Cascade)
+  scannedBy  User?      @relation("ScannedBy", fields: [scannedById], references: [id], onDelete: SetNull)
+  purchase   Purchase?  @relation(fields: [purchaseId], references: [id], onDelete: SetNull)
+
+  @@index([businessId, createdAt])
+  @@index([membershipId, createdAt])
+}

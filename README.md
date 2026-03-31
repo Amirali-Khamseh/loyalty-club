@@ -1,36 +1,135 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Loyalty Club
 
-## Getting Started
+Loyalty Club is a dual-interface web app for loyalty networks:
 
-First, run the development server:
+- Business owner interface:
+  - Program setup
+  - Purchase capture by member QR/code
+  - Special menus
+  - Metrics dashboard with chart visuals
+  - Newsletter draft workflow
+- Customer interface:
+  - Wallet for multiple businesses in the network
+  - Separate membership card per business
+  - Points and visit progress per business
+  - QR code per membership
+
+## Tech Stack
+
+- Next.js 16 App Router + React 19 + TypeScript
+- Tailwind CSS + shadcn UI
+- PostgreSQL + Prisma ORM
+- NextAuth (magic-link, Google OAuth, local demo fallback)
+- Docker Compose for local database
+
+## Prerequisites
+
+- Node.js 20+
+- npm 10+
+- Docker Desktop (or Docker Engine)
+
+## 1. Install Dependencies
+
+```bash
+npm install
+```
+
+## 2. Configure Environment
+
+Copy the environment template and update values if needed:
+
+```bash
+cp .env.example .env
+```
+
+On Windows PowerShell:
+
+```powershell
+Copy-Item .env.example .env
+```
+
+Important env values:
+
+- `DATABASE_URL`
+- `NEXTAUTH_SECRET`
+- `NEXTAUTH_URL`
+- `EMAIL_SERVER` and `EMAIL_FROM` for magic links
+- `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET` for Google sign-in
+
+If email and Google are not configured, local demo credentials auth is available for development.
+
+## 3. Start PostgreSQL (Docker)
+
+```bash
+npm run db:up
+```
+
+Stop database container:
+
+```bash
+npm run db:down
+```
+
+View database logs:
+
+```bash
+npm run db:logs
+```
+
+## 4. Run Prisma Migration + Seed
+
+```bash
+npm run prisma:migrate -- --name init
+npm run prisma:seed
+```
+
+Optional Prisma commands:
+
+```bash
+npm run prisma:generate
+npm run prisma:studio
+```
+
+## 5. Run the App
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- `http://localhost:3000`
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Demo Data Notes
 
-## Learn More
+Seed creates:
 
-To learn more about Next.js, take a look at the following resources:
+- Owner user:
+  - `owner@precisionconcierge.dev`
+- Customer user:
+  - `sara@precisionconcierge.dev`
+- Two businesses:
+  - Artisan Bakery
+  - Indigo Roasters
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+This allows testing the customer multi-business network wallet immediately.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Routes
 
-## Deploy on Vercel
+- Landing:
+  - `/`
+- Auth:
+  - `/auth/sign-in`
+- Owner:
+  - `/owner/dashboard`
+  - `/owner/program`
+  - `/owner/menus`
+- Customer:
+  - `/user/wallet`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Quality Checks
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npm run lint
+npm run build
+```
