@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Local Cafe | Loyalty Detail</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#a855f7", // Electric Purple
+                        "primary-variant": "#7e22ce",
+                        "secondary": "#ec4899", // Neon Pink
+                        "background": "#020617", // Midnight Blue/Black
+                        "surface": "#0f172a", // Darker Surface
+                        "surface-variant": "#1e293b",
+                        "on-surface": "#f8fafc",
+                        "on-surface-variant": "#94a3b8",
+                        "outline": "#475569",
+                        "accent-violet": "#8b5cf6",
+                    },
+                    fontFamily: {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "0.75rem", "xl": "1rem", "2xl": "1.5rem", "3xl": "2rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .electric-glow {
+            box-shadow: 0 0 20px rgba(168, 85, 247, 0.4);
+        }
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        body {
+            min-height: 100dvh;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body selection:bg-primary/30">
+<!-- Top Navigation -->
+<header class="fixed top-0 left-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-white/5">
+<div class="flex justify-between items-center w-full px-6 py-4 max-w-screen-2xl mx-auto">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary overflow-hidden border border-primary/30">
+<img alt="User Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAgrbk2FmuSNp3npbn2kO6ngejQLpaOdTKNh4HOakvVHPTHu8O03yjzPbR7cNwaM6mzSnKc087sauZqindWr0e01eR5k54qmYdYiOUwxvoU7R0ypCITJn90j9JZ239zVurLm3HUa6-4BdpKdIv7d1HCgy7C8o_g-QX-KWfccsBi9I3B-k7evsC5lPZU4pQ7Xk47_xLlIrUyISEdfP8FH2mAwpdvQKorC6jogsLrYZ2h4Ymgw_-OKtvnBierIQCNfzwkkjOmJ0-RbSDA"/>
+</div>
+<span class="text-xl font-bold tracking-tighter text-on-surface font-headline italic">The Precision Concierge</span>
+</div>
+<div class="hidden md:flex gap-8 items-center">
+<nav class="flex gap-6">
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label uppercase tracking-widest text-xs" href="#">Home</a>
+<a class="text-primary font-bold px-3 py-1 bg-primary/10 rounded-lg font-label uppercase tracking-widest text-xs" href="#">Loyalty</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label uppercase tracking-widest text-xs" href="#">Analytics</a>
+</nav>
+<button class="material-symbols-outlined text-primary p-2 hover:bg-primary/10 rounded-full transition-colors">notifications</button>
+</div>
+<button class="md:hidden material-symbols-outlined text-primary">menu</button>
+</div>
+</header>
+<main class="max-w-screen-xl mx-auto px-6 pt-24 pb-32">
+<!-- Hero Section -->
+<section class="mb-12 flex flex-col md:row gap-10 items-start">
+<div class="flex-1 w-full">
+<div class="flex items-center gap-3 mb-6">
+<span class="bg-primary text-white text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full shadow-[0_0_15px_rgba(168,85,247,0.5)]">Gold Member</span>
+<span class="text-outline font-label text-sm">•</span>
+<span class="text-on-surface-variant font-label text-sm tracking-wide">Member since Oct 2023</span>
+</div>
+<h1 class="font-headline text-5xl md:text-7xl font-extrabold text-on-surface tracking-tighter mb-6 leading-none">The Local Cafe</h1>
+<p class="text-on-surface-variant max-w-xl text-lg leading-relaxed">Artisanal roasts and handcrafted pastries in the heart of the city. Every 10th brew is our gift to you.</p>
+<div class="mt-8 flex flex-wrap gap-4">
+<button class="bg-primary text-white font-bold px-8 py-4 rounded-2xl shadow-lg hover:bg-primary-variant transition-all hover:scale-[1.02] flex items-center gap-2 electric-glow">
+<span class="material-symbols-outlined">star</span>
+                    Redeem Rewards
+                </button>
+<button class="text-on-surface font-semibold px-8 py-4 bg-surface-variant/50 hover:bg-surface-variant border border-white/5 transition-all rounded-2xl flex items-center gap-2">
+<span class="material-symbols-outlined">near_me</span>
+                    Find Store
+                </button>
+</div>
+</div>
+<!-- High-Contrast QR Code Card -->
+<div class="w-full md:w-[400px] flex-shrink-0 group">
+<div class="bg-white rounded-[2.5rem] p-10 shadow-[0_0_50px_rgba(168,85,247,0.15)] relative overflow-hidden transition-transform duration-500 group-hover:scale-[1.02]">
+<div class="absolute inset-0 bg-gradient-to-br from-white via-white to-slate-100"></div>
+<div class="relative z-10 flex flex-col items-center">
+<div class="text-center mb-8">
+<span class="font-label text-[10px] uppercase tracking-[0.3em] text-slate-400 font-black block mb-2">SCAN AT CHECKOUT</span>
+<h3 class="font-headline font-extrabold text-2xl text-slate-900 tracking-tight">ID: #LC-9821</h3>
+</div>
+<div class="bg-white p-6 rounded-[2rem] shadow-2xl border border-slate-100 mb-8">
+<img alt="Member QR Code" class="w-56 h-56" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBX_B0AZ1i4jn7PBS4HKFnN7ahCmzOTi9oHDVR2q-TTY-l_RP8h-CBNmTj4tjpeQMWQGJpSR0Au26sImLrgLxIwbpPf2Tdqmuk844gbw2kFjJV4OA8EeIzHu7Oc-GPxC0507UfF53kFZP69T-5rmxI0ogErLhveES4CdzU0d_9nh237zQOmgq85wUyujBpxi20UJlwDRGO8TDupB0qi2YgpOw3ghUFkaxPuI4D89gzJii5olebZuMCgq8MHPfqO448YGuCYA3wK5R1-"/>
+</div>
+<div class="flex items-center gap-3 px-6 py-3 bg-primary/10 rounded-full border border-primary/20">
+<span class="w-3 h-3 rounded-full bg-primary animate-ping"></span>
+<span class="text-sm font-bold text-primary font-label uppercase tracking-widest">Active &amp; Ready</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Bento Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+<!-- Progress Stamp Card -->
+<div class="lg:col-span-8 glass-card rounded-[2.5rem] p-10 relative overflow-hidden group">
+<div class="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-[80px] -mr-32 -mt-32"></div>
+<div class="flex justify-between items-start mb-12 relative z-10">
+<div>
+<h2 class="font-headline text-4xl font-extrabold mb-3 tracking-tight">Brew Progress</h2>
+<p class="text-accent-violet font-bold text-xs uppercase tracking-[0.2em]">3 stamps away from a free reward</p>
+</div>
+<div class="bg-white/5 border border-white/10 px-8 py-4 rounded-3xl text-center backdrop-blur-md">
+<span class="block font-headline text-3xl font-black text-primary leading-none">720</span>
+<span class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant font-bold">Total Points</span>
+</div>
+</div>
+<!-- Stamp Grid -->
+<div class="grid grid-cols-5 gap-4 md:gap-8 relative z-10">
+<!-- Completed Stamps -->
+<div class="aspect-square rounded-[1.5rem] bg-primary flex items-center justify-center text-white relative shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">verified</span>
+<div class="absolute -top-2 -right-2 bg-secondary text-[10px] px-2 py-1 rounded-lg font-black">+50</div>
+</div>
+<div class="aspect-square rounded-[1.5rem] bg-primary flex items-center justify-center text-white relative">
+<span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<div class="aspect-square rounded-[1.5rem] bg-primary flex items-center justify-center text-white relative">
+<span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<div class="aspect-square rounded-[1.5rem] bg-primary flex items-center justify-center text-white relative shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">verified</span>
+<div class="absolute -top-2 -right-2 bg-secondary text-[10px] px-2 py-1 rounded-lg font-black">+50</div>
+</div>
+<div class="aspect-square rounded-[1.5rem] bg-primary flex items-center justify-center text-white relative">
+<span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<!-- Current Stamps -->
+<div class="aspect-square rounded-[1.5rem] bg-background border-2 border-primary flex items-center justify-center text-primary relative electric-glow">
+<span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">coffee</span>
+</div>
+<div class="aspect-square rounded-[1.5rem] bg-background border-2 border-primary/50 flex items-center justify-center text-primary/70 relative">
+<span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">coffee</span>
+</div>
+<!-- Empty Stamps -->
+<div class="aspect-square rounded-[1.5rem] bg-surface-variant/30 flex items-center justify-center text-outline/40 border border-white/5">
+<span class="material-symbols-outlined text-4xl">coffee</span>
+</div>
+<div class="aspect-square rounded-[1.5rem] bg-surface-variant/30 flex items-center justify-center text-outline/40 border border-white/5">
+<span class="material-symbols-outlined text-4xl">coffee</span>
+</div>
+<!-- Goal Stamp -->
+<div class="aspect-square rounded-[1.5rem] bg-secondary/10 flex items-center justify-center text-secondary border-2 border-secondary/50 border-dashed relative group-hover:bg-secondary/20 transition-colors">
+<span class="material-symbols-outlined text-4xl animate-bounce">redeem</span>
+<span class="absolute bottom-3 font-label text-[8px] font-black uppercase tracking-widest">GOAL</span>
+</div>
+</div>
+</div>
+<!-- Perks Column -->
+<div class="lg:col-span-4 flex flex-col gap-6">
+<div class="bg-gradient-to-br from-surface-variant to-background border border-white/10 rounded-[2.5rem] p-10 flex flex-col justify-between h-full relative overflow-hidden group">
+<div class="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div>
+<div class="flex items-center gap-2 text-primary mb-6">
+<span class="material-symbols-outlined">auto_awesome</span>
+<span class="font-label text-xs uppercase tracking-[0.3em] font-black">GOLD EXCLUSIVE</span>
+</div>
+<h3 class="font-headline text-3xl font-extrabold mb-4 leading-tight">Lavender Haze Early Access</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed mb-8">Try our seasonal spring infusion before the public launch. A delicate blend of floral notes and micro-foam perfection.</p>
+</div>
+<div class="relative rounded-3xl overflow-hidden aspect-video shadow-2xl">
+<img alt="Lavender Latte" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0WDET966iYjVBzeSXnI-OTttxOAheeTPYpfY1jsKh4gFOmE2qEUaRVRLKnBErIH27TiMlMtQdJYXQ185Zouz-ff_9Us3KwaiyR-WHyt7lVChgwzFpSFB6_u0MQXCooORvl8mbPkKpduMHzP6HAexBtnl8Z95HD4IPH8a-FKJAg6Hg1qo-y6HvGfpRiiEJvrPZtZXb34HJ7Z0nOutLaS4y63SOwq_MalYU8IlKsX1ddFxIJTncl4Hygh0J3KZTLXwxgmiFHbX6wseW"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end p-6">
+<button class="w-full py-3 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 rounded-xl text-xs font-black uppercase tracking-widest text-white transition-all">Verify with Barista</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Custom Menu Section -->
+<section class="mt-20">
+<div class="flex items-end justify-between mb-12">
+<div>
+<h2 class="font-headline text-4xl font-extrabold tracking-tight mb-2">Member Rewards</h2>
+<div class="h-1 w-24 bg-primary rounded-full"></div>
+</div>
+<span class="font-label text-xs font-black uppercase tracking-[0.2em] text-accent-violet bg-primary/10 px-4 py-2 rounded-full border border-primary/20">4 Items Unlocked</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+<!-- Item 1 -->
+<div class="group">
+<div class="aspect-[4/5] rounded-[2.5rem] overflow-hidden mb-6 relative shadow-2xl transition-transform duration-500 group-hover:-translate-y-2">
+<img alt="Reserve Blend" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfI0XO7vZ5e7FZjTsx5W7_96GrRb38Yfoki1n0bPPBi36zt6vR7oZDbJMrpUun9JY5apD3lsV1vEgATj1K9iB01K8pQpvIeBUtbGpsbiwtFlavw8S9cRtEi5rOSP5t_2JEFckXLJq9EehKAm3epiga-hwiN89PLJXdtspGs5pIgKf-43cjRCNslGKShPwe6B4DbSyAqZmBsqwAttIRUYZ8GMFPv2AXnQX4aatO9saldU4Ii_JRTR2idqNjiHQq6WetFECdq1ep_Alo"/>
+<div class="absolute top-6 left-6 bg-primary text-white px-4 py-2 rounded-2xl text-[10px] font-black uppercase tracking-widest shadow-lg shadow-primary/40">50% Off</div>
+</div>
+<h4 class="font-headline font-extrabold text-xl mb-2">Reserve Blend Pour Over</h4>
+<p class="text-on-surface-variant text-sm font-medium leading-relaxed">Notes of dark chocolate and orange zest</p>
+</div>
+<!-- Item 2 -->
+<div class="group">
+<div class="aspect-[4/5] rounded-[2.5rem] overflow-hidden mb-6 relative shadow-2xl transition-transform duration-500 group-hover:-translate-y-2">
+<img alt="Pistachio Croissant" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB37M2xjcHn3L7Pmbg9NBbhuUDe8Nh1WdIJKdaG9WomEDZdOoJUuk0B0PymWmMnUYmLa9vi6y_nOa72Xz2MA9DpXdZUxA-gIUPeoHZwjCfDn6sS7uBfp7fa6rFhFKcY-ad1rAh9pukg7n3bUi1uMmM3A6BGnVUe6rt_LNYUtKeLtnc7N6gFZig8QVrI-y_xbvqPe3yR7hQqfn-ZgtDbNZQFk2ePbGvjbRcQ8YhocHjG5qOnL9W0xvombpqdZ7zOqszbVhRUsvwxoedr"/>
+<div class="absolute top-6 left-6 bg-secondary text-white px-4 py-2 rounded-2xl text-[10px] font-black uppercase tracking-widest shadow-lg shadow-secondary/40">Exclusive</div>
+</div>
+<h4 class="font-headline font-extrabold text-xl mb-2">Midnight Pistachio Croissant</h4>
+<p class="text-on-surface-variant text-sm font-medium leading-relaxed">Twice-baked with charcoal dough and cream</p>
+</div>
+<!-- Item 3 -->
+<div class="group">
+<div class="aspect-[4/5] rounded-[2.5rem] overflow-hidden mb-6 relative shadow-2xl transition-transform duration-500 group-hover:-translate-y-2">
+<img alt="Cold Brew" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAp50N0MLzCfygjLrU5Yv8VwJ-UNSi1EDIzs4OBiU2XDRsfuoTP7pnWTfITsa6wqkpXZFOeNTUzECvdml2Pd4BwBfi8XYZv0FCQoag2IWwk5iXuwIVGilMd9hrOCoRZXaycCBQCHDCx7UcgUsx0AFCSqs-DqhZ4vkXJLHWI9d55y4CZSZ9-bihPSbfrZbKMLF4v7nz4knnAuMr8PAzapb27cgB4APyY6QhaSW0xiIs9ngL1v0K3Iy9rl5AG1wjwkn36Oxub8_0b_95W"/>
+<div class="absolute top-6 left-6 bg-accent-violet text-white px-4 py-2 rounded-2xl text-[10px] font-black uppercase tracking-widest shadow-lg shadow-violet-500/40">Points Only</div>
+</div>
+<h4 class="font-headline font-extrabold text-xl mb-2">Cold Brew Nitro Float</h4>
+<p class="text-on-surface-variant text-sm font-medium leading-relaxed">Infused with Madagascar vanilla bean</p>
+</div>
+<!-- Item 4 -->
+<div class="group">
+<div class="aspect-[4/5] rounded-[2.5rem] overflow-hidden mb-6 relative shadow-2xl transition-transform duration-500 group-hover:-translate-y-2">
+<img alt="Matcha" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCeDmso1Ykw4fV6CE7E4Z8IlcirDo4HbvJtnvKpwLk5BY5ELis3WcbtkGhDiVdaWAAZPoYHUJmFo1z5yd9pJa1fgSspp0zib_K-W-t31QlqXyTHKt9fymIOHXYMRNRuIH3kW3D1BoQ-5MekXo-MeM2t5L-eHl4lu6aInYafCX7OS_YWrYVNPTwhj4DyNSs7yKiKliocDVJsoJZBHkk1oLqOmrP96VUCPrFlgX2CFFEsiA6yx9QRdP-VMxzi0SGbpxW2xnMq8DLKWYVA"/>
+<div class="absolute top-6 left-6 bg-emerald-500 text-white px-4 py-2 rounded-2xl text-[10px] font-black uppercase tracking-widest shadow-lg shadow-emerald-500/40">Free for You</div>
+</div>
+<h4 class="font-headline font-extrabold text-xl mb-2">Ceremonial Grade Matcha</h4>
+<p class="text-on-surface-variant text-sm font-medium leading-relaxed">Whisked traditionally with almond mylk</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-2 bg-background/90 backdrop-blur-xl z-50 border-t border-white/5 md:hidden">
+<a class="flex flex-col items-center justify-center text-on-surface-variant opacity-60 py-2 px-4 hover:opacity-100 transition-all" href="#">
+<span class="material-symbols-outlined mb-1">dashboard</span>
+<span class="text-[10px] font-bold tracking-widest uppercase font-label">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary text-white rounded-2xl py-3 px-8 -translate-y-4 shadow-[0_8px_32px_rgba(168,85,247,0.4)] transition-transform duration-150" href="#">
+<span class="material-symbols-outlined mb-1">auto_awesome</span>
+<span class="text-[10px] font-black tracking-widest uppercase font-label">Loyalty</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant opacity-60 py-2 px-4 hover:opacity-100 transition-all" href="#">
+<span class="material-symbols-outlined mb-1">analytics</span>
+<span class="text-[10px] font-bold tracking-widest uppercase font-label">Status</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant opacity-60 py-2 px-4 hover:opacity-100 transition-all" href="#">
+<span class="material-symbols-outlined mb-1">settings</span>
+<span class="text-[10px] font-bold tracking-widest uppercase font-label">Profile</span>
+</a>
+</nav>
+</body></html>

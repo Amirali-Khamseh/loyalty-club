@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Precision Concierge | Rewards &amp; Special Menus</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#8B5CF6", // Electric Purple
+              "primary-variant": "#7C3AED",
+              "background": "#0F0F17", // Midnight
+              "surface": "#1A1A24",
+              "surface-variant": "#252533",
+              "on-surface": "#FFFFFF",
+              "on-surface-variant": "#94A3B8",
+              "accent": "#C084FC",
+              "error": "#EF4444",
+              "outline": "#334155"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #0F0F17;
+            color: #FFFFFF;
+        }
+        h1, h2, h3, h4 { font-family: 'Manrope', sans-serif; }
+        .glass-card {
+            background: rgba(26, 26, 36, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .neon-glow {
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.15);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface min-h-screen pb-24 md:pb-0">
+<!-- TopAppBar -->
+<header class="bg-background/80 backdrop-blur-md sticky top-0 z-40 border-b border-outline/20">
+<div class="flex justify-between items-center w-full px-6 py-4 max-w-screen-2xl mx-auto">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-primary/20 border border-primary/30 flex items-center justify-center overflow-hidden">
+<img alt="User profile avatar" data-alt="close-up portrait of a professional business owner in a modern office with soft natural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCN1BlDiaKW9D_WVltIUXg1WsgWU8gATjTNZcgON8ywG0z7RjS90gEcDbnfFmM4INjYjs7XrAc7CDra1P0k8AGnSQtqMLq6le4HapfHrUimjTNmasoMDh004MGBv1g3fGmHNKr7qpx7dFXJoT_K43_sq3BUrb5aOPzaXvx-t3hvNGLT31hK9eJbaFg_Ad9xKcNQ5uFT_oimtSUjtQe1ERlwPaGQvo5aomASUkBg4AhNGNs1Q-Hr0Ovvtn-1m0EWlxmw6J8loq9HLY0r"/>
+</div>
+<h1 class="text-xl font-bold tracking-tight text-on-surface">The Precision <span class="text-primary">Concierge</span></h1>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-on-surface-variant hover:text-white transition-colors font-body text-xs tracking-widest uppercase" href="#">Home</a>
+<a class="text-primary font-bold transition-colors font-body text-xs tracking-widest uppercase border-b-2 border-primary pb-1" href="#">Loyalty</a>
+<a class="text-on-surface-variant hover:text-white transition-colors font-body text-xs tracking-widest uppercase" href="#">Analytics</a>
+<a class="text-on-surface-variant hover:text-white transition-colors font-body text-xs tracking-widest uppercase" href="#">Settings</a>
+</nav>
+<div class="flex items-center gap-2">
+<button class="p-2 rounded-full hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+</button>
+</div>
+</div>
+</header>
+<main class="max-w-screen-2xl mx-auto px-6 py-8">
+<!-- Header Section -->
+<section class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+<div class="max-w-2xl">
+<span class="font-label text-xs font-bold tracking-[0.2em] text-primary uppercase mb-3 block">Merchant Suite</span>
+<h2 class="text-4xl md:text-5xl font-extrabold tracking-tight text-white mb-4">Rewards &amp; Special Menus</h2>
+<p class="text-on-surface-variant text-lg leading-relaxed">Curate exclusive experiences for your most loyal patrons. Manage premium items that only Tier-members can access.</p>
+</div>
+<button class="bg-primary text-white px-8 py-3.5 rounded-full font-bold flex items-center gap-2 shadow-lg shadow-primary/20 hover:bg-primary-variant transition-all active:scale-95 self-start md:self-auto">
+<span class="material-symbols-outlined">add</span>
+            New Special Item
+        </button>
+</section>
+<!-- Stats Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+<div class="glass-card p-6 rounded-2xl">
+<p class="font-label text-[10px] font-bold text-on-surface-variant tracking-widest uppercase mb-1">Active Offers</p>
+<p class="text-3xl font-bold text-white">12 <span class="text-sm font-normal text-on-surface-variant">Items</span></p>
+</div>
+<div class="glass-card p-6 rounded-2xl">
+<p class="font-label text-[10px] font-bold text-on-surface-variant tracking-widest uppercase mb-1">Loyalty Redemption</p>
+<p class="text-3xl font-bold text-white">84% <span class="text-sm font-normal text-on-surface-variant">Efficiency</span></p>
+</div>
+<div class="bg-primary/10 border border-primary/20 p-6 rounded-2xl">
+<p class="font-label text-[10px] font-bold text-primary tracking-widest uppercase mb-1">Top Tier Upsell</p>
+<p class="text-3xl font-bold text-primary">+24% <span class="text-sm font-normal text-primary/60">Avg. Order</span></p>
+</div>
+</div>
+<!-- Special Menu List -->
+<div class="space-y-6">
+<!-- Item 1 -->
+<div class="group glass-card p-6 rounded-3xl flex flex-col md:flex-row items-center gap-8 transition-all hover:bg-surface-variant/50 border border-white/5">
+<div class="w-32 h-32 rounded-2xl overflow-hidden flex-shrink-0 relative group">
+<img alt="Vintage Reserve Wine" class="w-full h-full object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all duration-500" data-alt="macro shot of a deep red wine being poured into a crystal glass in a dimly lit upscale lounge" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCggagxCBACwinlpkbuYZEPH5j3XoQmQogGf5VaBOmk9LbPyydDCxLgWFKWvSKa3X3aXorReX-13f49GAary490kzD3UkitceEQVfLWsXoqgko2_i3cqiB_bydzrbKS5iT6uQaaq0jToFNK--EDQlFRy8vA58L2ptSe0LfBETCrRtwULuC2uJM3O0JK1PZ7S_lW_pMjQuJgP2QxPTVJxJLPrHOrFj5yO_5wHe7JKLnHBNsJRs3Wm2ncFKTofmddiMGCXifH2KTDNaah"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+</div>
+<div class="flex-grow">
+<div class="flex flex-wrap items-center gap-3 mb-2">
+<h3 class="text-2xl font-bold text-white tracking-tight">Vintage Reserve Selection</h3>
+<span class="bg-primary text-white text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest">Gold Tier Only</span>
+</div>
+<p class="text-on-surface-variant text-sm mb-6 max-w-xl leading-relaxed">Exclusive access to our private cellar labels. Hand-selected for our Platinum and Gold members annually.</p>
+<div class="flex items-center gap-8">
+<div>
+<p class="text-[10px] uppercase font-bold text-on-surface-variant tracking-[0.2em] mb-1">Public Price</p>
+<p class="text-on-surface-variant/60 line-through font-medium">$125.00</p>
+</div>
+<div class="bg-primary/10 px-4 py-2 rounded-xl border border-primary/20">
+<p class="text-[10px] uppercase font-bold text-primary tracking-[0.2em] mb-1">Loyalty Price</p>
+<p class="text-primary font-black text-2xl">$85.00</p>
+</div>
+</div>
+</div>
+<div class="flex md:flex-col gap-3">
+<button class="w-10 h-10 rounded-full flex items-center justify-center bg-surface-variant text-on-surface-variant hover:text-white hover:bg-primary transition-all">
+<span class="material-symbols-outlined text-sm">edit</span>
+</button>
+<button class="w-10 h-10 rounded-full flex items-center justify-center bg-surface-variant text-on-surface-variant hover:text-white hover:bg-error transition-all">
+<span class="material-symbols-outlined text-sm">delete</span>
+</button>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="group glass-card p-6 rounded-3xl flex flex-col md:flex-row items-center gap-8 transition-all hover:bg-surface-variant/50 border border-white/5">
+<div class="w-32 h-32 rounded-2xl overflow-hidden flex-shrink-0 relative">
+<img alt="Aged Wagyu" class="w-full h-full object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all duration-500" data-alt="perfectly seared wagyu beef steak with marbled texture on a dark slate plate with rosemary garnish" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKK0CH5K4y-iNa3R9qIpU1hJJG0U7eZmZYC6VVdb62PI_OPmC442YWaikFdWW5Q0RBv1bMP_qTiU_idaKWj44jmDFd60zr1YGTgFmezkm7YiTLK0x7NR5m8nAyHsCEx3dITUTX9IfuvKI3oxRRX_dYXZVJ0nK7hrAjLBpBO0CV4YvoQHn8ptkIVWDR99UDhWobt7YLdof5L0ZzrZduRp4Ekx37_D9Vbb5Q4z3UgO3vQYiI7fYmxVKeON3nTId2IzYro01dD1aqzQZ4"/>
+</div>
+<div class="flex-grow">
+<div class="flex flex-wrap items-center gap-3 mb-2">
+<h3 class="text-2xl font-bold text-white tracking-tight">45-Day Dry Aged Wagyu</h3>
+<span class="bg-surface-variant text-on-surface-variant text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest">Limited Stock</span>
+</div>
+<p class="text-on-surface-variant text-sm mb-6 max-w-xl leading-relaxed">A5 Grade Wagyu, aged in-house. Served with truffle-infused marrow butter and seasonal micro-greens.</p>
+<div class="flex items-center gap-8">
+<div>
+<p class="text-[10px] uppercase font-bold text-on-surface-variant tracking-[0.2em] mb-1">Public Price</p>
+<p class="text-on-surface-variant/60 line-through font-medium">$180.00</p>
+</div>
+<div class="bg-primary/10 px-4 py-2 rounded-xl border border-primary/20">
+<p class="text-[10px] uppercase font-bold text-primary tracking-[0.2em] mb-1">Loyalty Price</p>
+<p class="text-primary font-black text-2xl">$145.00</p>
+</div>
+</div>
+</div>
+<div class="flex md:flex-col gap-3">
+<button class="w-10 h-10 rounded-full flex items-center justify-center bg-surface-variant text-on-surface-variant hover:text-white hover:bg-primary transition-all">
+<span class="material-symbols-outlined text-sm">edit</span>
+</button>
+<button class="w-10 h-10 rounded-full flex items-center justify-center bg-surface-variant text-on-surface-variant hover:text-white hover:bg-error transition-all">
+<span class="material-symbols-outlined text-sm">delete</span>
+</button>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="group glass-card p-6 rounded-3xl flex flex-col md:flex-row items-center gap-8 transition-all hover:bg-surface-variant/50 border border-white/5">
+<div class="w-32 h-32 rounded-2xl overflow-hidden flex-shrink-0 relative">
+<img alt="Grand Dessert" class="w-full h-full object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all duration-500" data-alt="elegant gourmet dessert platter with gold leaf chocolate mousse and fresh berries on a white ceramic plate" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB936ikLmNbLdKRzu6eq3ELg4kBjI-301fdNt9mVpcwi0zlY3f8Ly3MD70RaHtWzKXSwfH3G0YNSU1O9VbZrxoj8UIJonVhFqSyvKyTefj_AyzwWU16RNaRSL2rmnfG10wjk8Cn3H_MzFUgo1sgAErTpDkqu6MG_xd33pz67jHdbTL9i1dzU4iqW6kCqJ9YhxDXZ6TeUpYehbWvY-dCVXAoSmqScqoADGeysnwbvkCUZirY3gmyJmpGIcciCxir8M75CEGg0QvRj9Th"/>
+</div>
+<div class="flex-grow">
+<div class="flex flex-wrap items-center gap-3 mb-2">
+<h3 class="text-2xl font-bold text-white tracking-tight">The Concierge Grand Dessert</h3>
+<span class="bg-accent/20 text-accent text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest border border-accent/30">Birthday Reward</span>
+</div>
+<p class="text-on-surface-variant text-sm mb-6 max-w-xl leading-relaxed">A curated sampler of our pastry chef's daily inspirations. Complimentary for members on their registered anniversary month.</p>
+<div class="flex items-center gap-8">
+<div>
+<p class="text-[10px] uppercase font-bold text-on-surface-variant tracking-[0.2em] mb-1">Public Price</p>
+<p class="text-on-surface-variant/60 line-through font-medium">$45.00</p>
+</div>
+<div class="bg-primary/10 px-4 py-2 rounded-xl border border-primary/20">
+<p class="text-[10px] uppercase font-bold text-primary tracking-[0.2em] mb-1">Loyalty Price</p>
+<p class="text-primary font-black text-2xl">$0.00</p>
+</div>
+</div>
+</div>
+<div class="flex md:flex-col gap-3">
+<button class="w-10 h-10 rounded-full flex items-center justify-center bg-surface-variant text-on-surface-variant hover:text-white hover:bg-primary transition-all">
+<span class="material-symbols-outlined text-sm">edit</span>
+</button>
+<button class="w-10 h-10 rounded-full flex items-center justify-center bg-surface-variant text-on-surface-variant hover:text-white hover:bg-error transition-all">
+<span class="material-symbols-outlined text-sm">delete</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Add New Placeholder Card -->
+<button class="w-full mt-10 py-16 border-2 border-dashed border-outline/30 rounded-3xl flex flex-col items-center justify-center text-on-surface-variant hover:border-primary/50 hover:text-white transition-all group bg-surface/30">
+<span class="material-symbols-outlined text-4xl mb-3 text-primary group-hover:scale-110 transition-transform">add_circle</span>
+<p class="font-bold text-lg">Add Another Exclusive Item</p>
+<p class="text-xs uppercase tracking-[0.3em] opacity-50 mt-1">Management Suite v2.0</p>
+</button>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-8 pt-4 bg-background/90 backdrop-blur-xl z-50 border-t border-outline/10 shadow-2xl">
+<a class="flex flex-col items-center justify-center text-on-surface-variant opacity-60 py-2 px-4 hover:opacity-100 transition-all" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label text-[10px] uppercase tracking-wider mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary py-2 px-4 scale-110" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">stars</span>
+<span class="font-label text-[10px] uppercase tracking-widest font-bold mt-1">Loyalty</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant opacity-60 py-2 px-4 hover:opacity-100 transition-all" href="#">
+<span class="material-symbols-outlined">bar_chart</span>
+<span class="font-label text-[10px] uppercase tracking-wider mt-1">Analytics</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant opacity-60 py-2 px-4 hover:opacity-100 transition-all" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label text-[10px] uppercase tracking-wider mt-1">Settings</span>
+</a>
+</nav>
+</body></html>

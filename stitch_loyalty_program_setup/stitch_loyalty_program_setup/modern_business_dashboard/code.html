@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Precision Concierge | Loyalty Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#8b5cf6", // Neon Violet
+                        "secondary": "#a855f7", // Electric Purple
+                        "background": "#020617", // Midnight Blue/Black
+                        "surface": "#0f172a", // Dark Slate
+                        "surface-variant": "#1e293b",
+                        "on-surface": "#f8fafc",
+                        "on-surface-variant": "#94a3b8",
+                        "outline": "#334155",
+                        "accent": "#c084fc"
+                    },
+                    fontFamily: {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: { "DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        body { font-family: 'Inter', sans-serif; background-color: #020617; }
+        h1, h2, h3, .font-headline { font-family: 'Manrope', sans-serif; }
+        .glass {
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .text-gradient {
+            background: linear-gradient(to right, #8b5cf6, #d8b4fe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface min-h-screen pb-24 md:pb-0 selection:bg-primary/30">
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 right-0 z-50 glass">
+<div class="flex justify-between items-center w-full px-6 py-5 max-w-screen-2xl mx-auto">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-primary/20 p-0.5 border border-primary/30 flex items-center justify-center overflow-hidden">
+<img alt="User Profile" class="w-full h-full object-cover rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1LmjAzJSnF_zVRb4ebif4zkZOVL-xdhKH-BklhUWosFJnZTxNx0Pbqug8aHHxmAN0xmtrrlop5Qb0fE2udkiWSNqigzHB31apy9nUX5JLYuWEk3jjIE80CUMhrjfCp_Yikpmh86z5OsKE7S0Mj5KrKNXog-8snxjfE9HMbD_qdDJ-Cfl9uiuKRx0xnRWboEPWH-fo6yw-B7CUjgKky9vvFTLjzBGjbkT0J1JZY8zInxgoA7hib70Vn0k2xNgE3OWIKXdE_30YKuqm"/>
+</div>
+<span class="text-xl font-extrabold tracking-tight text-gradient">The Precision Concierge</span>
+</div>
+<nav class="hidden md:flex items-center gap-10">
+<a class="text-on-surface font-semibold hover:text-primary transition-colors" href="#">Home</a>
+<a class="text-on-surface/60 hover:text-on-surface transition-colors" href="#">Loyalty</a>
+<a class="text-on-surface/60 hover:text-on-surface transition-colors" href="#">Analytics</a>
+<a class="text-on-surface/60 hover:text-on-surface transition-colors" href="#">Settings</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="p-2 text-on-surface/80 hover:bg-white/10 rounded-full transition-colors relative">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-primary rounded-full"></span>
+</button>
+</div>
+</div>
+</header>
+<main class="max-w-screen-2xl mx-auto px-6 pt-32 pb-12">
+<!-- Dashboard Header -->
+<div class="mb-14 flex flex-col md:flex-row md:items-end justify-between gap-8">
+<div class="space-y-3">
+<span class="text-primary font-bold tracking-[0.2em] uppercase text-xs font-label block">Performance Overview</span>
+<h1 class="text-5xl md:text-6xl font-extrabold tracking-tighter text-white">Loyalty Program Insights</h1>
+</div>
+<div class="flex gap-4">
+<button class="flex items-center gap-2 px-6 py-3 rounded-xl border border-outline hover:bg-white/5 text-white font-semibold transition-all">
+<span class="material-symbols-outlined text-sm" data-icon="edit">edit</span>
+                Edit Program
+            </button>
+<button class="flex items-center gap-2 px-6 py-3 rounded-xl bg-primary text-white font-bold shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all">
+<span class="material-symbols-outlined text-sm" data-icon="restaurant_menu">restaurant_menu</span>
+                Create Special Menu
+            </button>
+</div>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+<!-- Summary Stats -->
+<div class="md:col-span-8 grid grid-cols-1 sm:grid-cols-3 gap-8">
+<div class="bg-surface p-8 rounded-2xl border border-white/5 hover:border-primary/30 transition-all group">
+<div>
+<p class="text-on-surface-variant font-label text-xs tracking-[0.1em] uppercase mb-4">Active Members</p>
+<h3 class="text-4xl font-extrabold text-white">1,284</h3>
+</div>
+<div class="mt-6 flex items-center text-primary text-sm font-bold">
+<span class="material-symbols-outlined mr-2" data-icon="trending_up">trending_up</span>
+                    +12% vs last month
+                </div>
+</div>
+<div class="bg-surface p-8 rounded-2xl border border-white/5 hover:border-primary/30 transition-all">
+<div>
+<p class="text-on-surface-variant font-label text-xs tracking-[0.1em] uppercase mb-4">Rewards Claimed</p>
+<h3 class="text-4xl font-extrabold text-white">452</h3>
+</div>
+<div class="mt-6 flex items-center text-primary text-sm font-bold">
+<span class="material-symbols-outlined mr-2" data-icon="check_circle">check_circle</span>
+                    88% Redemption
+                </div>
+</div>
+<div class="bg-surface p-8 rounded-2xl border border-white/5 hover:border-primary/30 transition-all">
+<div>
+<p class="text-on-surface-variant font-label text-xs tracking-[0.1em] uppercase mb-4">Retention Rate</p>
+<h3 class="text-4xl font-extrabold text-white">74%</h3>
+</div>
+<div class="mt-6 flex items-center text-accent text-sm font-bold">
+<span class="material-symbols-outlined mr-2" data-icon="stars">stars</span>
+                    Elite status up
+                </div>
+</div>
+</div>
+<!-- Current Settings Panel -->
+<div class="md:col-span-4 bg-gradient-to-br from-primary/20 to-surface p-8 rounded-2xl border border-primary/20 relative overflow-hidden flex flex-col justify-between group">
+<div class="relative z-10">
+<h3 class="text-2xl font-bold mb-8 text-white font-headline">Loyalty Blueprint</h3>
+<ul class="space-y-6">
+<li class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary border border-primary/20">
+<span class="material-symbols-outlined" data-icon="toll">toll</span>
+</div>
+<div>
+<p class="text-[10px] font-label text-primary uppercase tracking-widest font-bold">Point Ratio</p>
+<p class="font-bold text-lg text-white">10 Points / $1.00</p>
+</div>
+</li>
+<li class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary border border-primary/20">
+<span class="material-symbols-outlined" data-icon="timer">timer</span>
+</div>
+<div>
+<p class="text-[10px] font-label text-primary uppercase tracking-widest font-bold">Expiration</p>
+<p class="font-bold text-lg text-white">365 Days rolling</p>
+</div>
+</li>
+<li class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary border border-primary/20">
+<span class="material-symbols-outlined" data-icon="groups">groups</span>
+</div>
+<div>
+<p class="text-[10px] font-label text-primary uppercase tracking-widest font-bold">Tiers</p>
+<p class="font-bold text-lg text-white">Silver, Gold, Platinum</p>
+</div>
+</li>
+</ul>
+</div>
+<!-- Glass Decorative Element -->
+<div class="absolute -right-20 -top-20 w-64 h-64 bg-primary/20 rounded-full blur-[80px] group-hover:bg-primary/30 transition-colors"></div>
+<button class="relative z-10 mt-10 py-4 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl text-center font-bold text-white transition-all">
+                Update Parameters
+            </button>
+</div>
+<!-- Main Performance Chart Area -->
+<div class="md:col-span-8 bg-surface p-10 rounded-2xl border border-white/5">
+<div class="flex justify-between items-center mb-10">
+<h3 class="text-2xl font-bold font-headline text-white">Popular Redemption Items</h3>
+<div class="flex gap-2">
+<span class="px-4 py-1.5 rounded-full bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-widest border border-primary/20">This Week</span>
+</div>
+</div>
+<div class="space-y-10">
+<div class="group">
+<div class="flex justify-between mb-3 items-end">
+<span class="text-lg font-bold text-white">Signature Espresso Roast</span>
+<span class="text-primary font-black">142</span>
+</div>
+<div class="h-2 w-full bg-white/5 rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-primary via-accent to-primary rounded-full" style="width: 85%"></div>
+</div>
+</div>
+<div class="group">
+<div class="flex justify-between mb-3 items-end">
+<span class="text-lg font-bold text-white">Artisan Pastry Selection</span>
+<span class="text-primary font-black">98</span>
+</div>
+<div class="h-2 w-full bg-white/5 rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-primary via-accent to-primary rounded-full" style="width: 62%"></div>
+</div>
+</div>
+<div class="group">
+<div class="flex justify-between mb-3 items-end">
+<span class="text-lg font-bold text-white">Weekend Brunch Voucher</span>
+<span class="text-primary font-black">54</span>
+</div>
+<div class="h-2 w-full bg-white/5 rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-primary via-accent to-primary rounded-full" style="width: 45%"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Quick Links / Recent Activity -->
+<div class="md:col-span-4 space-y-8">
+<div class="bg-surface-variant/30 p-8 rounded-2xl border border-white/5">
+<h3 class="text-xs font-label font-bold uppercase tracking-[0.2em] text-on-surface-variant mb-6">Quick Actions</h3>
+<div class="grid grid-cols-2 gap-4">
+<a class="flex flex-col items-center justify-center p-5 bg-surface rounded-xl hover:bg-primary/10 border border-white/5 hover:border-primary/30 transition-all text-center group" href="#">
+<span class="material-symbols-outlined text-primary mb-3 group-hover:scale-110 transition-transform" data-icon="card_giftcard">card_giftcard</span>
+<span class="text-xs font-bold text-white">New Reward</span>
+</a>
+<a class="flex flex-col items-center justify-center p-5 bg-surface rounded-xl hover:bg-primary/10 border border-white/5 hover:border-primary/30 transition-all text-center group" href="#">
+<span class="material-symbols-outlined text-primary mb-3 group-hover:scale-110 transition-transform" data-icon="campaign">campaign</span>
+<span class="text-xs font-bold text-white">Blast Email</span>
+</a>
+<a class="flex flex-col items-center justify-center p-5 bg-surface rounded-xl hover:bg-primary/10 border border-white/5 hover:border-primary/30 transition-all text-center group" href="#">
+<span class="material-symbols-outlined text-primary mb-3 group-hover:scale-110 transition-transform" data-icon="analytics">analytics</span>
+<span class="text-xs font-bold text-white">Deep Reports</span>
+</a>
+<a class="flex flex-col items-center justify-center p-5 bg-surface rounded-xl hover:bg-primary/10 border border-white/5 hover:border-primary/30 transition-all text-center group" href="#">
+<span class="material-symbols-outlined text-primary mb-3 group-hover:scale-110 transition-transform" data-icon="support_agent">support_agent</span>
+<span class="text-xs font-bold text-white">Support</span>
+</a>
+</div>
+</div>
+<div class="bg-surface p-8 rounded-2xl border border-white/5">
+<h3 class="text-xs font-label font-bold uppercase tracking-[0.2em] text-on-surface-variant mb-6">Activity Feed</h3>
+<div class="space-y-6">
+<div class="flex items-center gap-4 group">
+<div class="w-10 h-10 rounded-full bg-accent/10 border border-accent/20 flex items-center justify-center text-accent">
+<span class="material-symbols-outlined text-lg" data-icon="person_add">person_add</span>
+</div>
+<div class="text-sm">
+<p class="font-bold text-white">Sarah J. joined</p>
+<p class="text-xs text-on-surface-variant">2 mins ago</p>
+</div>
+</div>
+<div class="flex items-center gap-4 group">
+<div class="w-10 h-10 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-lg" data-icon="redeem">redeem</span>
+</div>
+<div class="text-sm">
+<p class="font-bold text-white">Mark D. hit Platinum</p>
+<p class="text-xs text-on-surface-variant">15 mins ago</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-6 left-6 right-6 flex justify-around items-center px-4 py-3 glass rounded-2xl z-50 shadow-2xl">
+<a class="flex flex-col items-center justify-center text-white/50 py-2 px-4 hover:text-white transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="text-[9px] uppercase tracking-[0.1em] mt-1 font-bold">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary text-white rounded-xl py-3 px-6 shadow-lg shadow-primary/30 -translate-y-4" href="#">
+<span class="material-symbols-outlined" data-icon="stars" style="font-variation-settings: 'FILL' 1;">stars</span>
+<span class="text-[9px] uppercase tracking-[0.1em] mt-1 font-bold">Loyalty</span>
+</a>
+<a class="flex flex-col items-center justify-center text-white/50 py-2 px-4 hover:text-white transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="bar_chart">bar_chart</span>
+<span class="text-[9px] uppercase tracking-[0.1em] mt-1 font-bold">Analytics</span>
+</a>
+<a class="flex flex-col items-center justify-center text-white/50 py-2 px-4 hover:text-white transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="text-[9px] uppercase tracking-[0.1em] mt-1 font-bold">Settings</span>
+</a>
+</nav>
+</body></html>
